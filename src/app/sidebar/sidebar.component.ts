@@ -11,7 +11,7 @@ export interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { 
         path: '/dashboard',     
-        title: 'Dashboard',         
+        title: 'Trang chủ',         
         icon:'nc-bank',       
         class: '' },
     { 
@@ -23,16 +23,16 @@ export const ROUTES: RouteInfo[] = [
     { 
         path: '/maths', 
         title: 'Toán',     
-        icon:'nc-bell-55',    
+        icon:'nc-chart-pie-36',    
         class: '' },
     { 
         path: '/notifications', 
-        title: 'Notifications',     
+        title: 'Thông báo',     
         icon:'nc-bell-55',    
         class: '' },
     { 
         path: '/user',          
-        title: 'User Profile',      
+        title: 'Trang cá nhân',      
         icon:'nc-single-02',  
         class: '' 
     },
