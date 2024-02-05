@@ -12,7 +12,8 @@ import Swal from 'sweetalert2'
 export class MathComponent implements OnInit {
 
   formData : FormGroup
-  formHinhTamGiac: FormGroup
+  formChuViHinhTamGiac: FormGroup
+  formDienTichHinhTamGiac : FormGroup
 
   constructor(
     private modalService: NgbModal,
@@ -45,6 +46,15 @@ export class MathComponent implements OnInit {
     })
   }
 
+  makeFormDienTichTG(d?) {
+    return this.formBuilder.group({
+      canhThuNhat : 0,
+      canhThuHai: 0,
+      canhThuBa: 0
+      // currency: [data.currency || 'VND'],
+    })
+  }
+
   saveData(){
 
   }
@@ -53,17 +63,49 @@ export class MathComponent implements OnInit {
    * @param content modal content
    */
   
-  openModalHinhTamGiac(chuViHinhTamGiac: any) {
-    this.formHinhTamGiac = this.makeFormChuViTG()
+  openModalCVHinhTamGiac(chuViHinhTamGiac: any) {
+    this.formChuViHinhTamGiac = this.makeFormChuViTG()
     this.modalService.open(chuViHinhTamGiac);
   }
 
   chuViTG : number = 0
-
   tinhCVTG(){
-    if((this.formHinhTamGiac.value.canhThuBa + this.formHinhTamGiac.value.canhThuHai) >  this.formHinhTamGiac.value.canhThuNhat && ( this.formHinhTamGiac.value.canhThuNhat + this.formHinhTamGiac.value.canhThuHai) > this.formHinhTamGiac.value.canhThuBa && ( this.formHinhTamGiac.value.canhThuNhat + this.formHinhTamGiac.value.canhThuBa) > this.formHinhTamGiac.value.canhThuHai)
+    if((this.formChuViHinhTamGiac.value.canhThuBa + this.formChuViHinhTamGiac.value.canhThuHai) >  this.formChuViHinhTamGiac.value.canhThuNhat && ( this.formChuViHinhTamGiac.value.canhThuNhat + this.formChuViHinhTamGiac.value.canhThuHai) > this.formChuViHinhTamGiac.value.canhThuBa && ( this.formChuViHinhTamGiac.value.canhThuNhat + this.formChuViHinhTamGiac.value.canhThuBa) > this.formChuViHinhTamGiac.value.canhThuHai)
     {
-      this.chuViTG = (this.formHinhTamGiac.value.canhThuBa + this.formHinhTamGiac.value.canhThuHai + this.formHinhTamGiac.value.canhThuNhat) * 1.0
+      this.chuViTG = (this.formChuViHinhTamGiac.value.canhThuBa + this.formChuViHinhTamGiac.value.canhThuHai + this.formChuViHinhTamGiac.value.canhThuNhat) * 1.0
+    }else{
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "warning",
+        title: "Đây không phải là tam giác"
+      });
+    }
+  }
+
+  dTichTG : number = 0.0
+  nuaCV : number = 0.0
+
+  openModalDTHinhTamGiac(dienTichHinhTamGiac: any) {
+    this.formDienTichHinhTamGiac = this.makeFormChuViTG()
+    this.modalService.open(dienTichHinhTamGiac);
+  }
+
+  tinhDTTG(){
+    if((this.formDienTichHinhTamGiac.value.canhThuBa + this.formDienTichHinhTamGiac.value.canhThuHai) >  this.formDienTichHinhTamGiac.value.canhThuNhat && ( this.formDienTichHinhTamGiac.value.canhThuNhat + this.formDienTichHinhTamGiac.value.canhThuHai) > this.formDienTichHinhTamGiac.value.canhThuBa && ( this.formDienTichHinhTamGiac.value.canhThuNhat + this.formDienTichHinhTamGiac.value.canhThuBa) > this.formDienTichHinhTamGiac.value.canhThuHai)
+    {
+      this.chuViTG = (this.formDienTichHinhTamGiac.value.canhThuBa + this.formDienTichHinhTamGiac.value.canhThuHai + this.formDienTichHinhTamGiac.value.canhThuNhat) * 1.0
+      this.nuaCV = this.chuViTG/2
+      this.dTichTG = Math.sqrt(this.nuaCV * (this.nuaCV - this.formDienTichHinhTamGiac.value.canhThuNhat)* (this.nuaCV - this.formDienTichHinhTamGiac.value.canhThuHai)* (this.nuaCV - this.formDienTichHinhTamGiac.value.canhThuBa))
     }else{
       const Toast = Swal.mixin({
         toast: true,

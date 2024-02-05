@@ -26,14 +26,14 @@ export class DashboardComponent implements OnInit{
         type: 'line',
 
         data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+          labels: ["Th1", "Th2", "Th3", "Th4", "Th5", "Th6", "Th7", "Th8", "Th9", "Th10", "Th11","Th12"],
           datasets: [{
               borderColor: "#6bd098",
               backgroundColor: "#6bd098",
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
-              data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
+              data: [300, 310, 316, 302, 330, 326, 333, 345, 338, 354,360,389]
             },
             {
               borderColor: "#f17e5d",
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit{
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
-              data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
+              data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420, 350, 399]
             },
             {
               borderColor: "#fcc468",
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit{
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
-              data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
+              data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484,475,576]
             }
           ]
         },

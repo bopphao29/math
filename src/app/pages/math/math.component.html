@@ -27,7 +27,7 @@
                 <td>Hình tam giác</td>
                 <td>
                   <div>
-                    <button type="button" class="btn btn-success btn-sm" (click)="openModalHinhTamGiac(chuViHinhTamGiac)">
+                    <button type="button" class="btn btn-success btn-sm" (click)="openModalCVHinhTamGiac(chuViHinhTamGiac)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -41,9 +41,9 @@
                     </button>
                   </div>
                 </td>
-                <td>
-                  <div>
-                    <button type="button" class="btn btn-success btn-sm">
+                <td style="width: 100px;">
+                  <div class="d-flex" style="gap: 5px;">
+                    <button type="button" class="col-md-6 btn btn-success btn-sm" (click)="openModalDTHinhTamGiac(dienTichHinhTamGiac)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -53,7 +53,19 @@
                           d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z">
                         </path>
                       </svg>
-                      Tính
+                      Tam giác
+                    </button>
+                    <button type="button" class="col-md-6 btn btn-warning btn-sm" (click)="openModalDTHinhTamGiac(dienTichHinhTamGiac)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                        </path>
+                        <path fill-rule="evenodd"
+                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z">
+                        </path>
+                      </svg>
+                      Tam giác vuông
                     </button>
                   </div>
                 </td>
@@ -493,7 +505,7 @@
   <hr>
     <div class="mt-3">
       <p>Tính chu vi</p>
-      <form [formGroup]="formHinhTamGiac">
+      <form [formGroup]="formChuViHinhTamGiac">
         <div class="form-group">
           <div class="col">
             <span >Nhập cạnh thứ nhất</span>
@@ -526,7 +538,7 @@
   </div> -->
 </ng-template>
 
-<ng-template #hinhTamGiac let-c="close" class="modal-content" let-d="dismiss">
+<ng-template #dienTichHinhTamGiac let-c="close" class="modal-content" let-d="dismiss">
   <div class="modal-header">
     <h6 class="modal-title" id="modal-basic-title text-center">Hình tam giác</h6>
   </div>
@@ -536,25 +548,31 @@
     </div>
   <hr>
     <div class="mt-3">
-      <p>Tính chu vi</p>
-      <form [formGroup]="formHinhTamGiac">
+      <p>Tính diện tích</p>
+      <form [formGroup]="formDienTichHinhTamGiac">
         <div class="form-group">
           <div class="col">
-            <span >Nhập cạnh đáy</span>
-          <input type="number" min="0" class="form-control" formControlName="canhDay" placeholder="Cạnh đáy">
+            <span >Nhập cạnh thứ nhất</span>
+          <input type="number" min="0" class="form-control" formControlName="canhThuNhat" placeholder="Cạnh đáy">
           </div>
         </div>
         <div class="form-group">
           <div class="col">
-            <span>Nhập chiều cao</span>
-            <input type="number" min="0" class="form-control" formControlName="chieuCao" placeholder="Chiều cao">
+            <span>Nhập cạnh thứ hai</span>
+            <input type="number" min="0" class="form-control" formControlName="canhThuHai" placeholder="Chiều cao">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col">
+            <span>Nhập cạnh thứ ba</span>
+            <input type="number" min="0" class="form-control" formControlName="canhThuBa" placeholder="Chiều cao">
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary " (click)="tinhTG()">Tính</button>
+          <button type="submit" class="btn btn-primary " (click)="tinhDTTG()">Tính</button>
         </div>
         <div class="">
-            <span class="text-danger">Kết quả: {{chuViTG}}</span>
+            <span class="text-danger">Kết quả: {{dTichTG}}</span>
         </div>
       </form>
     </div>
