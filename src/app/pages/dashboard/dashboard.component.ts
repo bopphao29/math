@@ -111,10 +111,11 @@ export class DashboardComponent implements OnInit{
               '#e3e3e3',
               '#4acccd',
               '#fcc468',
-              '#ef8157'
+              '#ef8157',
+              '#6bd098'
             ],
             borderWidth: 0,
-            data: [342, 480, 530, 120]
+            data: [342, 480, 530, 120,300]
           }]
         },
 

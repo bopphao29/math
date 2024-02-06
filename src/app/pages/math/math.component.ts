@@ -14,7 +14,7 @@ export class MathComponent implements OnInit {
   formData : FormGroup
   formChuViHinhTamGiac: FormGroup
   formDienTichHinhTamGiac : FormGroup
-
+  formDienTichHinhTamGiacVuong : FormGroup
   constructor(
     private modalService: NgbModal,
     public formBuilder: FormBuilder
@@ -52,6 +52,13 @@ export class MathComponent implements OnInit {
       canhThuHai: 0,
       canhThuBa: 0
       // currency: [data.currency || 'VND'],
+    })
+  }
+
+  makeFormDienTichTGV(d?) {
+    return this.formBuilder.group({
+      canhDay : 0,
+      chieuCao: 0,
     })
   }
 
@@ -96,7 +103,7 @@ export class MathComponent implements OnInit {
   nuaCV : number = 0.0
 
   openModalDTHinhTamGiac(dienTichHinhTamGiac: any) {
-    this.formDienTichHinhTamGiac = this.makeFormChuViTG()
+    this.formDienTichHinhTamGiac = this.makeFormDienTichTG()
     this.modalService.open(dienTichHinhTamGiac);
   }
 
@@ -106,6 +113,36 @@ export class MathComponent implements OnInit {
       this.chuViTG = (this.formDienTichHinhTamGiac.value.canhThuBa + this.formDienTichHinhTamGiac.value.canhThuHai + this.formDienTichHinhTamGiac.value.canhThuNhat) * 1.0
       this.nuaCV = this.chuViTG/2
       this.dTichTG = Math.sqrt(this.nuaCV * (this.nuaCV - this.formDienTichHinhTamGiac.value.canhThuNhat)* (this.nuaCV - this.formDienTichHinhTamGiac.value.canhThuHai)* (this.nuaCV - this.formDienTichHinhTamGiac.value.canhThuBa))
+    }else{
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "warning",
+        title: "Đây không phải là tam giác"
+      });
+    }
+  }
+
+  openModalDTHinhTamGiacVuong(dienTichHinhTamGiacVuong: any){
+    this.formDienTichHinhTamGiacVuong = this.makeFormDienTichTGV()
+    this.modalService.open(dienTichHinhTamGiacVuong);
+  }
+
+
+  dTichTGV : number = 0.0
+  tinhDTTGV(){
+    if(this.formDienTichHinhTamGiacVuong.value.canhDay > 0 || this.formDienTichHinhTamGiacVuong.value.chieuCao > 0)
+    {
+      this.dTichTGV = this.formDienTichHinhTamGiacVuong.value.canhDay * this.formDienTichHinhTamGiacVuong.value.chieuCao / 2
     }else{
       const Toast = Swal.mixin({
         toast: true,
